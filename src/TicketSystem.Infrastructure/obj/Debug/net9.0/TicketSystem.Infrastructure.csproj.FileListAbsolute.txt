@@ -1,0 +1,17 @@
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/bin/Debug/net9.0/TicketSystem.Infrastructure.deps.json
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/bin/Debug/net9.0/TicketSystem.Infrastructure.dll
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/bin/Debug/net9.0/TicketSystem.Infrastructure.pdb
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/bin/Debug/net9.0/TicketSystem.Application.dll
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/bin/Debug/net9.0/TicketSystem.Domain.dll
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/bin/Debug/net9.0/TicketSystem.Domain.pdb
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/bin/Debug/net9.0/TicketSystem.Application.pdb
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/TicketSystem.Infrastructure.csproj.AssemblyReference.cache
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/TicketSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/TicketSystem.Infrastructure.AssemblyInfoInputs.cache
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/TicketSystem.Infrastructure.AssemblyInfo.cs
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/TicketSystem.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/TicketSy.A42B3834.Up2Date
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/TicketSystem.Infrastructure.dll
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/refint/TicketSystem.Infrastructure.dll
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/TicketSystem.Infrastructure.pdb
+/Users/salem/Web/TicketSystem/src/TicketSystem.Infrastructure/obj/Debug/net9.0/ref/TicketSystem.Infrastructure.dll

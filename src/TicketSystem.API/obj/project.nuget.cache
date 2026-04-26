@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "BU9j4+BTaLs=",
+  "success": true,
+  "projectFilePath": "/Users/salem/Web/TicketSystem/src/TicketSystem.API/TicketSystem.API.csproj",
+  "expectedPackageFiles": [
+    "/Users/salem/.nuget/packages/microsoft.aspnetcore.openapi/9.0.4/microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
+    "/Users/salem/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
