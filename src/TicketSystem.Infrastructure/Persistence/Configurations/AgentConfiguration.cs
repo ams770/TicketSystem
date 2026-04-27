@@ -23,19 +23,5 @@ public class AgentConfiguration : IEntityTypeConfiguration<Agent>
 
         builder.HasIndex(a => a.Username)
             .IsUnique();
-        
-        // ── Seed Data ──────────────────────────────────────
-        // BCrypt hash of "Admin@1234" — generated once, never changes
-        // var adminPasswordHash = BCrypt.Net.BCrypt.HashPassword("P@ssw0rd");
-        //
-        // builder.HasData(new
-        // {
-        //     Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
-        //     FullName = "System Admin",
-        //     Username = "admin",
-        //     PasswordHash = adminPasswordHash,
-        //     IsAvailable = true,
-        //     CreatedAt = DateTime.UtcNow
-        // });
     }
 }

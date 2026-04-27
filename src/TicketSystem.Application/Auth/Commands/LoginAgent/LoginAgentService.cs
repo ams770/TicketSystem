@@ -11,10 +11,11 @@ public class LoginAgentService(IAgentRepo agentRepo, IPasswordHasher passwordHas
     {
         // Get Agent
         var existAgent = await agentRepo.GetByUsernameAsync(command.Username);
-        // Check if the user exists & the password is valid
-        var isAuthenticated = existAgent != null  && passwordHasher.Verify(command.Password, existAgent.PasswordHash);
+        // Check if the username exists & the password is valid
+        var isAuthenticated =
+            existAgent is not null && passwordHasher.Verify(command.Password, existAgent.PasswordHash);
         // Handle wrong authentication
-        if (isAuthenticated) throw new UnauthorizedException("Username or password is incorrect");
+        if (!isAuthenticated) throw new UnauthorizedException("Username or password is incorrect");
         // Generate token
         var accessToken = jwtService.GenerateJwtToken(existAgent!.Id, existAgent.Username, "Agent");
         return new LoginAgentResult

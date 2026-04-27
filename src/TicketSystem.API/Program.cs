@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using TicketSystem.API.Middleware;
 using TicketSystem.Application.Auth.Commands.LoginAgent;
 using TicketSystem.Application.Auth.Commands.LoginUser;
 using TicketSystem.Application.Auth.Commands.RegisterAgent;
@@ -111,6 +112,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthentication(); // ← must come before UseAuthorization
 app.UseAuthorization();

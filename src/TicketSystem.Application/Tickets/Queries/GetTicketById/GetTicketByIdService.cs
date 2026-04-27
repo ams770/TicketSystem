@@ -9,8 +9,8 @@ public class GetTicketByIdService(ITicketRepo ticketRepo)
 {
     public async Task<TicketDto> ExecuteAsync(GetTicketByIdQuery query)
     {
-        var ticket = await ticketRepo.GetByIdAsync(query.TicketId) ??
-                     throw new NotFoundException(nameof(Ticket), query.TicketId);
+        var ticket = await ticketRepo.GetByIdAsync(query.Id) ??
+                     throw new NotFoundException(nameof(Ticket), query.Id);
         return ticket.ToDto();
     }
 }

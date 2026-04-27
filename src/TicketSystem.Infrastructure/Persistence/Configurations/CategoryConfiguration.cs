@@ -19,11 +19,11 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         
         
         // ── Seed Data ──────────────────────────────────────
-        // builder.HasData(
-        //     new { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), Name = "Technical Support" },
-        //     new { Id = Guid.Parse("00000000-0000-0000-0000-000000000002"), Name = "Billing" },
-        //     new { Id = Guid.Parse("00000000-0000-0000-0000-000000000003"), Name = "Account & Login" },
-        //     new { Id = Guid.Parse("00000000-0000-0000-0000-000000000004"), Name = "General Inquiry" }
-        // );
+        builder.HasData(
+            new { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), Name = "Technical Support" },
+            new { Id = Guid.Parse("00000000-0000-0000-0000-000000000002"), Name = "Billing" },
+            new { Id = Guid.Parse("00000000-0000-0000-0000-000000000003"), Name = "Account & Login" },
+            new { Id = Guid.Parse("00000000-0000-0000-0000-000000000004"), Name = "General Inquiry" }
+        );
     }
 }

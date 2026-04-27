@@ -11,10 +11,11 @@ public class LoginUserService(IUserRepo userRepo, IPasswordHasher passwordHasher
     {
         // Get User
         var existUser = await userRepo.GetByUsernameAsync(command.Username);
-        // Check if the user exists & the password is valid
-        var isAuthenticated = existUser != null && passwordHasher.Verify(command.Password, existUser.PasswordHash);
+        // Check if the username exists & the password is valid
+        var isAuthenticated =
+            existUser is not null && passwordHasher.Verify(command.Password, existUser.PasswordHash);
         // Handle wrong authentication
-        if (isAuthenticated) throw new UnauthorizedException("Username or password is incorrect");
+        if (!isAuthenticated) throw new UnauthorizedException("Username or password is incorrect");
         // Generate token
         var accessToken = jwtService.GenerateJwtToken(existUser!.Id, existUser.Username, "User");
         return new LoginUserResult

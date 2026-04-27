@@ -7,7 +7,7 @@ namespace TicketSystem.Application.Tickets.Queries.GetAllTickets;
 
 public class GetAllTicketsService(ITicketRepo ticketRepo)
 {
-    public async Task<PagedResult<TicketDto>> GetAllTickets(GetAllTicketsQuery query)
+    public async Task<PagedResult<TicketDto>> ExecuteAsync(GetAllTicketsQuery query)
     {
         // Fetch paged result
         var pagedTickets = await ticketRepo.GetAllAsync(query);
