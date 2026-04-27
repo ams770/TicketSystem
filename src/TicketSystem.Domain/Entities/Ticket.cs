@@ -35,9 +35,9 @@ public class Ticket
     {
         return Status switch
         {
-            Open => [InProgress],
+            // Open => [InProgress],
             InProgress => [Open, Resolved],
-            Resolved => [Open, InProgress, Closed],
+            // Resolved => [],
             _ => Array.Empty<TicketStatus>()
         };
     }
@@ -74,8 +74,11 @@ public class Ticket
         var allowedStatusChange = AllowedStatusChange();
         if (!allowedStatusChange.Contains(newStatus)) throw new DomainException("Invalid status change.");
 
-        if (newStatus == Resolved) ResolvedAt = DateTime.UtcNow;
-
+        if (newStatus == Resolved)
+        {
+            ResolvedAt = DateTime.UtcNow;
+        }
+        
         UpdatedAt = DateTime.UtcNow;
         Status = newStatus;
     }
@@ -91,17 +94,19 @@ public class Ticket
     {
         ValidateTicketEditable();
         if (!agent.IsAvailable) throw new DomainException("Agent is not available.");
+        agent.SetAvailability(false);
 
         AgentId = agent.Id;
         Agent = agent;
         UpdatedAt = DateTime.UtcNow;
         Status = InProgress;
     }
+    
 
 
     private void ValidateTicketEditable()
     {
-        if (Status == Closed)
+        if (Status == Resolved)
             throw new DomainException("Cannot update a closed ticket.");
     }
 }

@@ -4,6 +4,14 @@
     <ProjectReference Include="..\TicketSystem.Domain\TicketSystem.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Agents\Commands\" />
+    <Folder Include="Agents\Queries\" />
+    <Folder Include="Auth\" />
+    <Folder Include="Comments\Queries\" />
+    <Folder Include="Tickets\Commands\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

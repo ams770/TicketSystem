@@ -1,6 +1,9 @@
+using System.Security.Claims;
+using TicketSystem.Domain.Entities;
+
 namespace TicketSystem.Application.Interfaces;
 
-public class IJwtService
+public interface IJwtService
 {
-    
+    string GenerateJwtToken(Guid userId, string email, string role);
 }
