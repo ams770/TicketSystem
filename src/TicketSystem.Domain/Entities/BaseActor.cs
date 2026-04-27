@@ -6,8 +6,8 @@ public abstract class BaseActor
 {
     public Guid Id { get; protected set; }
     public string FullName { get; protected set; } = null!;
-    public string Email { get; protected set; } = null!;
-    protected string PasswordHash { get; set; } = null!;
+    public string Username { get; protected set; } = null!;
+    public string PasswordHash { get; protected set; } = null!;
     public DateTime CreatedAt { get; protected set; }
 
 
@@ -17,19 +17,13 @@ public abstract class BaseActor
         FullName = fullName.Trim();
     }
 
-    public void SetEmail(string email)
+    public void SetUsername(string username)
     {
-        ValidateEmail(email);
-        Email = email.Trim();
+        ValidateUsername(username);
+        Username = username.Trim();
     }
 
-    public bool CheckPassword(string passwordHash)
-    {
-        if (string.IsNullOrWhiteSpace(passwordHash))
-            throw new DomainException("Password hash is required.");
 
-        return PasswordHash == passwordHash;
-    }
 
     public void ChangePassword(string newPasswordHash)
     {
@@ -46,10 +40,10 @@ public abstract class BaseActor
             throw new DomainException("Full name is required.");
     }
 
-    protected static void ValidateEmail(string email)
+    protected static void ValidateUsername(string username)
     {
         // todo replace this check with regex
-        if (string.IsNullOrWhiteSpace(email) || !email.Contains('@'))
-            throw new DomainException("A valid email is required");
+        if (string.IsNullOrWhiteSpace(username) || username.Length < 6)
+            throw new DomainException("A valid Username is required");
     }
 }

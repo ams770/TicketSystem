@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Agents\Commands\" />
     <Folder Include="Agents\Queries\" />
-    <Folder Include="Auth\" />
     <Folder Include="Comments\Queries\" />
     <Folder Include="Tickets\Commands\" />
   </ItemGroup>

@@ -1,8 +1,7 @@
-namespace TicketSystem.Application.Auth.Commands.RegisterAgent;
+namespace TicketSystem.Application.Auth.Commands.LoginAgent;
 
-public class RegisterAgentCommand
+public class LoginAgentCommand
 {
-    public string FullName { get; set; } = null!;
     public string Username { get; set; } = null!;
     public string Password { get; set; } = null!;
 }

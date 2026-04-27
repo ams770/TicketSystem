@@ -3,22 +3,21 @@ using TicketSystem.Application.Interfaces;
 using TicketSystem.Domain.Entities;
 using TicketSystem.Domain.Interfaces;
 
-namespace TicketSystem.Application.Auth.Commands.LoginAgent;
+namespace TicketSystem.Application.Auth.Commands.LoginUser;
 
-public class LoginAgentService(IAgentRepo agentRepo, IPasswordHasher passwordHasher, IJwtService jwtService)
+public class LoginUserService(IUserRepo userRepo, IPasswordHasher passwordHasher, IJwtService jwtService)
 {
-    public async Task<LoginAgentResult> ExecuteAsync(LoginAgentCommand command)
+    public async Task<LoginUserResult> ExecuteAsync(LoginUserCommand command)
     {
-        // Get Agent
-        var existAgent = await agentRepo.GetByUsernameAsync(command.Username);
-        // Hash Sent Password -> to compare
-        var hashedPassword = passwordHasher.HashPassword(command.Password);
-        var isAuthenticated = existAgent != null && existAgent.CheckPassword(hashedPassword);
+        // Get User
+        var existUser = await userRepo.GetByUsernameAsync(command.Username);
+        // Check if the user exists & the password is valid
+        var isAuthenticated = existUser != null && passwordHasher.Verify(command.Password, existUser.PasswordHash);
         // Handle wrong authentication
-        if (isAuthenticated) throw new ConflictException("Username or password is incorrect");
+        if (isAuthenticated) throw new UnauthorizedException("Username or password is incorrect");
         // Generate token
-        var accessToken = jwtService.GenerateJwtToken(existAgent!.Id, existAgent.Username, "Agent");
-        return new LoginAgentResult
+        var accessToken = jwtService.GenerateJwtToken(existUser!.Id, existUser.Username, "User");
+        return new LoginUserResult
         {
             AccessToken = accessToken,
         };

@@ -13,16 +13,16 @@ public class User : BaseActor
     public IReadOnlyCollection<Ticket> Tickets => _tickets.AsReadOnly();
 
 
-    public static User Create(string fullName, string email, string passwordHash)
+    public static User Create(string fullName, string username, string passwordHash)
     {
         ValidateFullName(fullName);
-        ValidateEmail(email);
+        ValidateUsername(username);
 
         return new User
         {
             Id = Guid.NewGuid(),
             FullName = fullName.Trim(),
-            Email = email.Trim().ToLower(),
+            Username = username.Trim().ToLower(),
             PasswordHash = passwordHash,
             CreatedAt = DateTime.UtcNow
         };

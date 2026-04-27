@@ -5,5 +5,5 @@ namespace TicketSystem.Application.Interfaces;
 
 public interface IJwtService
 {
-    string GenerateJwtToken(Guid userId, string email, string role);
+    string GenerateJwtToken(Guid userId, string username, string role);
 }

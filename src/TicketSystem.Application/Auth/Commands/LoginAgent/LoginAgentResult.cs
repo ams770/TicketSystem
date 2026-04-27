@@ -1,6 +1,6 @@
-namespace TicketSystem.Application.Auth.Commands.RegisterAgent;
+namespace TicketSystem.Application.Auth.Commands.LoginAgent;
 
-public class RegisterAgentResult
+public class LoginAgentResult
 {
     public string AccessToken { get; set; } = null!;
 }

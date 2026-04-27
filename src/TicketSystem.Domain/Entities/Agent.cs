@@ -15,16 +15,16 @@ public class Agent : BaseActor
     public IReadOnlyCollection<Ticket> Tickets => _tickets.AsReadOnly();
 
 
-    public static Agent Create(string fullName, string email, string passwordHash)
+    public static Agent Create(string fullName, string username, string passwordHash)
     {
         ValidateFullName(fullName);
-        ValidateEmail(email);
+        ValidateUsername(username);
 
         return new Agent
         {
             Id = Guid.NewGuid(),
             FullName = fullName.Trim(),
-            Email = email.Trim().ToLower(),
+            Username = username.Trim().ToLower(),
             PasswordHash = passwordHash,
             IsAvailable = true,
             CreatedAt = DateTime.UtcNow

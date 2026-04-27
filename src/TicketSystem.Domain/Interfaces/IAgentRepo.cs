@@ -4,7 +4,7 @@ namespace TicketSystem.Domain.Interfaces;
 
 public interface IAgentRepo : IDomainRepo<Agent>
 {
-    Task<Agent?> GetByEmailAsync(string email);
+    Task<Agent?> GetByUsernameAsync(string username);
     Task<ICollection<Agent>> GetAllAvailableAsync();
     Task<ICollection<Agent>> GetAllAsync();
 }

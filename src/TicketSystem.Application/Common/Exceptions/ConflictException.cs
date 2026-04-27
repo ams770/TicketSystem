@@ -1,6 +1,3 @@
 namespace TicketSystem.Application.Common.Exceptions;
 
-public class ConflictException
-{
-    
-}
+public class ConflictException(string message) : Exception(message);
