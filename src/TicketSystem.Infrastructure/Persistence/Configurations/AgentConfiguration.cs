@@ -9,6 +9,11 @@ public class AgentConfiguration : IEntityTypeConfiguration<Agent>
     public void Configure(EntityTypeBuilder<Agent> builder)
     {
         builder.HasKey(a => a.Id);
+        
+        builder.Navigation(a => a.Tickets)
+            .HasField("_tickets")
+            .UsePropertyAccessMode(PropertyAccessMode.Field);
+
 
         builder.Property(a => a.FullName)
             .IsRequired()

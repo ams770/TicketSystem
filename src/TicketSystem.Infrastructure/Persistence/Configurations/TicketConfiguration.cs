@@ -10,6 +10,10 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
     {
         builder.HasKey(t => t.Id);
 
+        builder.Navigation(t => t.Comments)
+            .HasField("_comments")
+            .UsePropertyAccessMode(PropertyAccessMode.Field);
+        
         builder.Property(t => t.Title)
             .IsRequired()
             .HasMaxLength(120);
@@ -25,6 +29,7 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasConversion<string>();
 
         // Relationships
+        
         builder.HasOne(t => t.User)
             .WithMany(u => u.Tickets)
             .HasForeignKey(t => t.UserId)

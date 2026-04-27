@@ -13,6 +13,7 @@ public class AddCommentService(ITicketRepo ticketRepo)
         // -
         var commentCreated = Comment.Create(command.Content, command.TicketId, command.AuthorId);
         ticket.AddComment(commentCreated);
+        await ticketRepo.AddCommentAsync(commentCreated); 
         await ticketRepo.SaveChangesAsync();
         // -
 

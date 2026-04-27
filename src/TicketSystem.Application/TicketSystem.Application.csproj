@@ -5,7 +5,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Comments\Queries\" />
     <Folder Include="Tickets\Commands\" />
   </ItemGroup>
 

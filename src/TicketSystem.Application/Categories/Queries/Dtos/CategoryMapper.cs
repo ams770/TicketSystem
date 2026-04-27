@@ -1,6 +1,12 @@
-namespace CategorySystem.Application.Categories.Queries.Dtos;
+using TicketSystem.Domain.Entities;
 
-public class CategoryMapper
+namespace TicketSystem.Application.Categories.Queries.Dtos;
+
+public static class CategoryMapper
 {
-    
+    public static CategoryDto ToDto(this Category category) => new()
+    {
+        Id = category.Id,
+        Name = category.Name
+    };
 }

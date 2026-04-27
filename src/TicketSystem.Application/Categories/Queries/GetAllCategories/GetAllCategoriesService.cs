@@ -1,29 +1,19 @@
-using TicketSystem.Application.Tickets.Queries.Dtos;
-using TicketSystem.Domain.Common;
-using TicketSystem.Domain.Entities;
+
+using TicketSystem.Application.Categories.Queries.Dtos;
 using TicketSystem.Domain.Interfaces;
 
-namespace TicketSystem.Application.Tickets.Queries.
-;
+namespace TicketSystem.Application.Categories.Queries.GetAllCategories;
 
-public class GetAllCategoriesService(ITicketRepo ticketRepo)
+public class GetAllCategoriesService(ICategoryRepo categoryRepo)
 {
-    public async Task<PagedResult<TicketDto>> ExecuteAsync(GetAllTicketsQuery query)
+    public async Task<ICollection<CategoryDto>> ExecuteAsync()
     {
-        // Fetch paged result
-        var pagedTickets = await ticketRepo.GetAllAsync(query);
+        var categories = await categoryRepo.GetAllAsync();
         // Map to Dto 
-        var dtoItems = pagedTickets.Items
+        var dtoItems = categories
             .Select(item => item.ToDto())
             .ToList();
 
-
-        return new PagedResult<TicketDto>
-        {
-            Items = dtoItems,
-            TotalCount = pagedTickets.TotalCount,
-            Page = pagedTickets.Page,
-            PageSize = pagedTickets.PageSize
-        };
+        return dtoItems;
     }
 }

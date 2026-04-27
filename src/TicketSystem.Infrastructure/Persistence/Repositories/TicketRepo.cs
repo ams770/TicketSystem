@@ -58,7 +58,11 @@ public class TicketRepo(AppDbContext dbContext) : ITicketRepo
             PageSize = request.PageSize
         };
     }
-
+    public async Task AddCommentAsync(Comment comment)
+    {
+        // Explicitly marks the comment as Added — no ambiguity for EF Core
+        await dbContext.Comments.AddAsync(comment);
+    }
     public async Task SaveChangesAsync() =>
         await dbContext.SaveChangesAsync();
 }

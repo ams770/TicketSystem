@@ -1,12 +1,17 @@
+
 using Microsoft.AspNetCore.Mvc;
+using TicketSystem.Application.Categories.Queries.GetAllCategories;
 
 namespace TicketSystem.API.Controllers;
 
-public class CategoriesController : Controller
+[ApiController]
+[Route("api/[controller]")]
+public class CategoriesController(GetAllCategoriesService categoriesService) : ControllerBase
 {
-    // GET
-    public IActionResult Index()
+    [HttpGet]
+    public async Task<IActionResult> GetAllCategories()
     {
-        return View();
+        var result = await categoriesService.ExecuteAsync();
+        return Ok(result);
     }
 }

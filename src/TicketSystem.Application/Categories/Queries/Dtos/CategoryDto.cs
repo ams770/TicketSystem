@@ -1,6 +1,7 @@
-namespace CategorySystem.Application.Categories.Queries.;
+namespace TicketSystem.Application.Categories.Queries.Dtos;
 
 public class CategoryDto
 {
-    
+    public Guid Id { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

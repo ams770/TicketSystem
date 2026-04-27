@@ -9,6 +9,11 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.HasKey(u => u.Id);
+        
+        builder.Navigation(a => a.Tickets)
+            .HasField("_tickets")
+            .UsePropertyAccessMode(PropertyAccessMode.Field);
+
 
         builder.Property(u => u.FullName)
             .IsRequired()

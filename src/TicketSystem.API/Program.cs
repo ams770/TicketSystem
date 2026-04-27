@@ -1,4 +1,5 @@
 using System.Text;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -8,6 +9,7 @@ using TicketSystem.Application.Auth.Commands.LoginAgent;
 using TicketSystem.Application.Auth.Commands.LoginUser;
 using TicketSystem.Application.Auth.Commands.RegisterAgent;
 using TicketSystem.Application.Auth.Commands.RegisterUser;
+using TicketSystem.Application.Categories.Queries.GetAllCategories;
 using TicketSystem.Application.Comments.Commands.AddComment;
 using TicketSystem.Application.Interfaces;
 using TicketSystem.Application.Tickets.Commands.AssignTicket;
@@ -48,6 +50,7 @@ builder.Services.AddScoped<AssignTicketService>();
 builder.Services.AddScoped<ChangeTicketStatusService>();
 builder.Services.AddScoped<GetTicketByIdService>();
 builder.Services.AddScoped<GetAllTicketsService>();
+builder.Services.AddScoped<GetAllCategoriesService>();
 
 // ── Application Services — Comments ─────────────────────────
 builder.Services.AddScoped<AddCommentService>();

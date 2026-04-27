@@ -6,4 +6,5 @@ namespace TicketSystem.Domain.Interfaces;
 public interface ITicketRepo : IDomainRepo<Ticket>
 {
     Task<PagedResult<Ticket>> GetAllAsync(TicketPagedRequest request);
+    Task AddCommentAsync(Comment comment);
 }
