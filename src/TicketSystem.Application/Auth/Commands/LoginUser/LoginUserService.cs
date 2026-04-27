@@ -1,0 +1,26 @@
+using TicketSystem.Application.Common.Exceptions;
+using TicketSystem.Application.Interfaces;
+using TicketSystem.Domain.Entities;
+using TicketSystem.Domain.Interfaces;
+
+namespace TicketSystem.Application.Auth.Commands.LoginAgent;
+
+public class LoginAgentService(IAgentRepo agentRepo, IPasswordHasher passwordHasher, IJwtService jwtService)
+{
+    public async Task<LoginAgentResult> ExecuteAsync(LoginAgentCommand command)
+    {
+        // Get Agent
+        var existAgent = await agentRepo.GetByUsernameAsync(command.Username);
+        // Hash Sent Password -> to compare
+        var hashedPassword = passwordHasher.HashPassword(command.Password);
+        var isAuthenticated = existAgent != null && existAgent.CheckPassword(hashedPassword);
+        // Handle wrong authentication
+        if (isAuthenticated) throw new ConflictException("Username or password is incorrect");
+        // Generate token
+        var accessToken = jwtService.GenerateJwtToken(existAgent!.Id, existAgent.Username, "Agent");
+        return new LoginAgentResult
+        {
+            AccessToken = accessToken,
+        };
+    }
+}
