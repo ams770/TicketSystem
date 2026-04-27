@@ -1,6 +1,6 @@
 namespace TicketSystem.Application.Tickets.Queries.GetTicketById;
 
-public class GetTicketByIdCommand
+public class TicketCommentDto
 {
     
 }
