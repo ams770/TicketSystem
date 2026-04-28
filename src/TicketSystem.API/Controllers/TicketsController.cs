@@ -38,10 +38,9 @@ public class TicketsController(
     [Authorize(Roles = "User")]
     public async Task<IActionResult> Create([FromBody] CreateTicketCommand command)
     {
-        var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        command.UserId = userId;
 
-        var result = await createTicket.ExecuteAsync(command);
+        var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var result = await createTicket.ExecuteAsync(userId, command);
         return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
     }
 

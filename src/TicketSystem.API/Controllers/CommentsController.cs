@@ -13,9 +13,8 @@ public class CommentsController(AddCommentService addComment) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] AddCommentCommand command)
     {
-        command.AuthorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-
-        var result = await addComment.ExecuteAsync(command);
+        var authorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var result = await addComment.ExecuteAsync(authorId, command);
         return CreatedAtAction(nameof(Add), result);
     }
 }

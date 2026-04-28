@@ -7,12 +7,12 @@ namespace TicketSystem.Application.Comments.Commands.AddComment;
 
 public class AddCommentService(IUnitOfWork unitOfWork, ITicketRepo ticketRepo)
 {
-    public async Task<AddCommentResult> ExecuteAsync(AddCommentCommand command)
+    public async Task<AddCommentResult> ExecuteAsync(Guid authorId, AddCommentCommand command)
     {
         var ticket = await ticketRepo.GetByIdAsync(command.TicketId) ??
                      throw new NotFoundException(nameof(Ticket), command.TicketId);
         // -
-        var commentCreated = Comment.Create(command.Content, command.TicketId, command.AuthorId);
+        var commentCreated = Comment.Create(command.Content, command.TicketId, authorId);
         ticket.AddComment(commentCreated);
         await ticketRepo.AddCommentAsync(commentCreated);
         await unitOfWork.SaveChangesAsync();

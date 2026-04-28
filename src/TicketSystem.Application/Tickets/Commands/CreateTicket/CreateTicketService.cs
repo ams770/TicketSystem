@@ -7,11 +7,11 @@ namespace TicketSystem.Application.Tickets.Commands.CreateTicket;
 
 public class CreateTicketService(IUnitOfWork unitOfWork, ITicketRepo ticketRepo, IUserRepo userRepo, ICategoryRepo categoryRepo)
 {
-    public async Task<CreateTicketResult> ExecuteAsync(CreateTicketCommand command)
+    public async Task<CreateTicketResult> ExecuteAsync(Guid userId, CreateTicketCommand command)
     {
         // Check user exists
-        _ = await userRepo.GetByIdAsync(command.UserId)
-            ?? throw new NotFoundException(nameof(User), command.UserId);
+        _ = await userRepo.GetByIdAsync(userId)
+            ?? throw new NotFoundException(nameof(User), userId);
         // Check category exists
         _ = await categoryRepo.GetByIdAsync(command.CategoryId) ??
             throw new NotFoundException(nameof(Category), command.CategoryId);
@@ -20,7 +20,7 @@ public class CreateTicketService(IUnitOfWork unitOfWork, ITicketRepo ticketRepo,
             title: command.Title,
             description: command.Description,
             categoryId: command.CategoryId,
-            userId: command.UserId,
+            userId: userId,
             priority: command.Priority
         );
 
