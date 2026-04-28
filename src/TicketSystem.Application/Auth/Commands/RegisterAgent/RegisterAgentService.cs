@@ -5,7 +5,7 @@ using TicketSystem.Domain.Interfaces;
 
 namespace TicketSystem.Application.Auth.Commands.RegisterAgent;
 
-public class RegisterAgentService(IAgentRepo agentRepo, IPasswordHasher passwordHasher, IJwtService jwtService)
+public class RegisterAgentService(IUnitOfWork unitOfWork, IAgentRepo agentRepo, IPasswordHasher passwordHasher, IJwtService jwtService)
 {
     public async Task<RegisterAgentResult> ExecuteAsync(RegisterAgentCommand command)
     {
@@ -17,7 +17,7 @@ public class RegisterAgentService(IAgentRepo agentRepo, IPasswordHasher password
         // Save Agent
         var newAgent = Agent.Create(command.FullName, command.Username, hashedPassword);
         await agentRepo.AddAsync(newAgent);
-        await agentRepo.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync();
         // Generate token
         var accessToken = jwtService.GenerateJwtToken(newAgent.Id, newAgent.Username, "Agent");
         return new RegisterAgentResult

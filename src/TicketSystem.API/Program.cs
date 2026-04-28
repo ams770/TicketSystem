@@ -37,6 +37,7 @@ builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 // ── Infrastructure Services ─────────────────────────────────
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // ── Application Services — Auth ─────────────────────────────
 builder.Services.AddScoped<RegisterUserService>();

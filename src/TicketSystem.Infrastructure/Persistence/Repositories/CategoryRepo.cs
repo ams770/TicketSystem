@@ -15,6 +15,4 @@ public class CategoryRepo(AppDbContext dbContext) : ICategoryRepo
     public async Task<ICollection<Category>> GetAllAsync() =>
         await dbContext.Categories.ToListAsync();
 
-    public async Task SaveChangesAsync() =>
-        await dbContext.SaveChangesAsync();
 }

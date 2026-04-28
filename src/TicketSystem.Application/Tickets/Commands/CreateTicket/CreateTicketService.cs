@@ -1,10 +1,11 @@
 using TicketSystem.Application.Common.Exceptions;
+using TicketSystem.Application.Interfaces;
 using TicketSystem.Domain.Entities;
 using TicketSystem.Domain.Interfaces;
 
 namespace TicketSystem.Application.Tickets.Commands.CreateTicket;
 
-public class CreateTicketService(ITicketRepo ticketRepo, IUserRepo userRepo, ICategoryRepo categoryRepo)
+public class CreateTicketService(IUnitOfWork unitOfWork, ITicketRepo ticketRepo, IUserRepo userRepo, ICategoryRepo categoryRepo)
 {
     public async Task<CreateTicketResult> ExecuteAsync(CreateTicketCommand command)
     {
@@ -24,7 +25,7 @@ public class CreateTicketService(ITicketRepo ticketRepo, IUserRepo userRepo, ICa
         );
 
         await ticketRepo.AddAsync(createdTicket);
-        await ticketRepo.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return new CreateTicketResult
         {

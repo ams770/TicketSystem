@@ -1,10 +1,11 @@
 using TicketSystem.Application.Common.Exceptions;
+using TicketSystem.Application.Interfaces;
 using TicketSystem.Domain.Entities;
 using TicketSystem.Domain.Interfaces;
 
 namespace TicketSystem.Application.Comments.Commands.AddComment;
 
-public class AddCommentService(ITicketRepo ticketRepo)
+public class AddCommentService(IUnitOfWork unitOfWork, ITicketRepo ticketRepo)
 {
     public async Task<AddCommentResult> ExecuteAsync(AddCommentCommand command)
     {
@@ -13,14 +14,14 @@ public class AddCommentService(ITicketRepo ticketRepo)
         // -
         var commentCreated = Comment.Create(command.Content, command.TicketId, command.AuthorId);
         ticket.AddComment(commentCreated);
-        await ticketRepo.AddCommentAsync(commentCreated); 
-        await ticketRepo.SaveChangesAsync();
+        await ticketRepo.AddCommentAsync(commentCreated);
+        await unitOfWork.SaveChangesAsync();
         // -
 
         return new AddCommentResult
         {
             Id = commentCreated.Id,
-            CreatedAt =  commentCreated.CreatedAt,
+            CreatedAt = commentCreated.CreatedAt,
         };
     }
 }

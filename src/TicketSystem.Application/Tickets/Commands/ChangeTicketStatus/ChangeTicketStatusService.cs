@@ -1,11 +1,12 @@
 using TicketSystem.Application.Common.Exceptions;
+using TicketSystem.Application.Interfaces;
 using TicketSystem.Domain.Entities;
 using TicketSystem.Domain.Enums;
 using TicketSystem.Domain.Interfaces;
 
 namespace TicketSystem.Application.Tickets.Commands.ChangeTicketStatus;
 
-public class ChangeTicketStatusService(ITicketRepo ticketRepo, IAgentRepo agentRepo)
+public class ChangeTicketStatusService(IUnitOfWork unitOfWork, ITicketRepo ticketRepo, IAgentRepo agentRepo)
 {
     public async Task<ChangeTicketStatusResult> ExecuteAsync(ChangeTicketStatusCommand command)
     {
@@ -23,7 +24,7 @@ public class ChangeTicketStatusService(ITicketRepo ticketRepo, IAgentRepo agentR
         ticket.ChangeStatus(command.Status);
         
         // Save all changes
-        await ticketRepo.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync();
         
         return new ChangeTicketStatusResult
         {

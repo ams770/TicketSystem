@@ -23,7 +23,4 @@ public class AgentRepo(AppDbContext dbContext) : IAgentRepo
 
     public async Task<ICollection<Agent>> GetAllAsync() =>
         await dbContext.Agents.ToListAsync();
-
-    public async Task SaveChangesAsync() =>
-        await dbContext.SaveChangesAsync();
 }

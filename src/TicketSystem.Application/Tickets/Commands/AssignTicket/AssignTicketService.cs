@@ -1,10 +1,11 @@
 using TicketSystem.Application.Common.Exceptions;
+using TicketSystem.Application.Interfaces;
 using TicketSystem.Domain.Entities;
 using TicketSystem.Domain.Interfaces;
 
 namespace TicketSystem.Application.Tickets.Commands.AssignTicket;
 
-public class AssignTicketService(ITicketRepo ticketRepo, IAgentRepo agentRepo)
+public class AssignTicketService(IUnitOfWork unitOfWork, ITicketRepo ticketRepo, IAgentRepo agentRepo)
 {
     public async Task<AssignTicketResult> ExecuteAsync(AssignTicketCommand command)
     {
@@ -17,7 +18,7 @@ public class AssignTicketService(ITicketRepo ticketRepo, IAgentRepo agentRepo)
         // -
         ticket.AssignAgent(agent);
         
-        await ticketRepo.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync();
 
         return new AssignTicketResult
         {

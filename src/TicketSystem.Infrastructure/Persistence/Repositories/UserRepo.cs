@@ -41,7 +41,4 @@ public class UserRepo(AppDbContext dbContext) : IUserRepo
             PageSize = request.PageSize
         };
     }
-
-    public async Task SaveChangesAsync() =>
-        await dbContext.SaveChangesAsync();
 }
